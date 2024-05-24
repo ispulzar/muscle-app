@@ -1,5 +1,37 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { musculos } from "./Data";
+
+function Modal({ nameMuscle, toggleModal }) {
+  const [modalMode, setModalMode] = useState(false);
+
+  const changeModal = () => {
+    setModalMode(!modalMode);
+  };
+
+  return (
+    <div className={modalMode ? "modal2" : "modal1"}>
+      <button onClick={changeModal} className="button01">Ejercicios</button>
+      <button onClick={toggleModal} className="buttonClose">X</button>
+      <div className="scrollContent">
+        {modalMode &&
+          musculos[nameMuscle].ejercicios.map((ejercicio) => (
+            <div key={ejercicio.name}>
+              <img
+                id={`ejercicios-${ejercicio.name}`}
+                className="imgEjercicio"
+                src={ejercicio.imagesEjercicios}
+              />
+              <div id="infoEjercicio">
+                <p>Name: {ejercicio.name}</p>
+                <p>Peso: {ejercicio.peso}</p>
+                <p>Rango Rep: {ejercicio.rangeRep}</p>
+              </div>
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+}
 
 function Punto(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,25 +39,20 @@ function Punto(props) {
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
-  console.log(musculos)
+
   return (
     <div>
       <img
         id={props.id}
         className={props.clase}
-        src="./public/circle.png"
+        src="./circle.png"
         alt="circle"
-        onClick={toggleModal}    
+        onClick={toggleModal}
       />
       {isOpen && (
         <>
           <div className="backdrop" onClick={toggleModal} />
-          <div className="modal">
-            <h2>{musculos[props.nameMuscle].name}</h2>
-            
-            <p>{musculos[props.nameMuscle].tamano}</p>
-            <button onClick={toggleModal}>Cerrar</button>
-          </div>
+          <Modal nameMuscle={props.nameMuscle} toggleModal={toggleModal} />
         </>
       )}
     </div>

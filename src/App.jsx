@@ -11,6 +11,8 @@ export const App = () => {
         <Punto id="p2" clase={"circle"} nameMuscle="dorsal"/>
         <Punto id="p3" clase={"circle"} nameMuscle="triceps"/>
         <Punto id="p4" clase={"circle"} nameMuscle="triceps"/>
+        <Punto id="p5" clase={"circle"} nameMuscle="gluteos"/>
+        <Punto id="p6" clase={"circle"} nameMuscle="gluteos"/>
       </Backdrop>
     </div>
   );
