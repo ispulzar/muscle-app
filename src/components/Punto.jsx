@@ -10,8 +10,12 @@ function Modal({ nameMuscle, toggleModal }) {
 
   return (
     <div className={modalMode ? "modal2" : "modal1"}>
-      <button onClick={changeModal} className="button01">Ejercicios</button>
-      <button onClick={toggleModal} className="buttonClose">X</button>
+      <button onClick={changeModal} className="button01">
+        Ejercicios
+      </button>
+      <button onClick={toggleModal} className="buttonClose">
+        X
+      </button>
       <div className="scrollContent">
         {modalMode &&
           musculos[nameMuscle].ejercicios.map((ejercicio) => (
@@ -20,6 +24,7 @@ function Modal({ nameMuscle, toggleModal }) {
                 id={`ejercicios-${ejercicio.name}`}
                 className="imgEjercicio"
                 src={ejercicio.imagesEjercicios}
+                alt={ejercicio.name}
               />
               <div id="infoEjercicio">
                 <p>Name: {ejercicio.name}</p>
@@ -28,6 +33,11 @@ function Modal({ nameMuscle, toggleModal }) {
               </div>
             </div>
           ))}
+        {modalMode && (
+          <button onClick={changeModal} className="button01">
+            Agregar
+          </button>
+        )}
       </div>
     </div>
   );
